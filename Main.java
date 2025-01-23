@@ -3,15 +3,45 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Car2 car = new Car2(8, "Base car");
+        System.out.println(car.startEngine());
+        System.out.println(car.accelerate());
+        System.out.println(car.brake());
 
-        Car car = new Car("2022 Blue Ferrari 296 GTS");
-        runRace(car);
-    }
-    public static void runRace(Car car) {
-        car.startEngine();
-        car.drive();
+        Mitsubishi mitsubishi = new Mitsubishi(6, "Outlander VRX 4WD");
+        System.out.println(mitsubishi.startEngine());
+        System.out.println(mitsubishi.accelerate());
+        System.out.println(mitsubishi.brake());
+
+        Ford ford = new Ford(6, "Ford Falcon");
+        System.out.println(ford.startEngine());
+        System.out.println(ford.accelerate());
+        System.out.println(ford.brake());
+
+        Holden holden = new Holden(6, "Holden Commodore");
+        System.out.println(holden.startEngine());
+        System.out.println(holden.accelerate());
+        System.out.println(holden.brake());
     }
 }
+
+
+
+//        // crear instancia de Car
+//        System.out.println("Car class");
+//        Car car = new Car("2022 Blue Ferrari 296 GTS");
+//        runRace(car);
+//
+//        // crear instancia de GasPoweredCar
+//        System.out.println("GasPoweredCar class");
+//        Car car2 = new GasPoweredCar("2022 Blue Ferrari 3000 GTS", 10.5, 6);
+//        runRace(car2);
+//    }
+//    public static void runRace(Car car) {
+//        car.startEngine();
+//        car.drive();
+//    }
+//}
 //        // crear instancia de Movie
 //        Scanner s = new Scanner(System.in);
 //        while (true) {

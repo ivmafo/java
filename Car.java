@@ -9,13 +9,14 @@ public class Car {
         System.out.println("Car -> starEngine");
     }
 
-    public void drive() {
-        System.out.println("Car -> driving, type is " + getClass().getSimpleName());
-        runEngine();
-    }
+
     protected void runEngine() {
         System.out.println("Car -> runEngine");
     }
 
+    public void drive() {
+        System.out.println("Car -> driving, type is " + getClass().getSimpleName());
+        runEngine();
+    }
 
 }
