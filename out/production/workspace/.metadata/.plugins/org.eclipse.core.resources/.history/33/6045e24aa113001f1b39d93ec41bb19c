@@ -1,0 +1,48 @@
+package basics;
+
+public class Wall {
+	public double witdh ;
+	public double height ;
+	
+	
+	
+	public Wall() {
+	}
+
+
+
+	public Wall(double witdh, double height) {
+		witdh = (witdh <= 0 )? 0 : witdh ;
+		height = (height <= 0 )? 0 : height ;
+		this.witdh = witdh ;
+		this.height = height;
+	}
+
+
+
+	public double getWitdh() {
+		return witdh;
+	}
+
+
+
+	public void setWitdh(double witdh) {
+		 with = (witdh <= 0 )? 0 : witdh ;
+		this.witdh = witdh;
+	}
+
+
+
+	public double getHeight() {
+		return height;
+	}
+
+
+
+	public void setHeight(double height) {
+		double with = (witdh <= 0 )? 0 : witdh ;
+		this.height = height;
+	}
+	
+	
+}

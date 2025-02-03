@@ -1,0 +1,56 @@
+package com.ivan.demo.rest;
+
+import java.rmi.StubNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ivan.demo.entity.Estudiante;
+
+import jakarta.annotation.PostConstruct;
+
+@RestController
+@RequestMapping("/api")
+public class EstudianteRestController {
+	
+	@ExceptionHandler
+	public ResponseEntity<EstudianteErrorResponse> handleException(EstudianteNotFoundException exc){
+		EstudianteErrorResponse error = new EstudianteErrorResponse(); 
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setMensaje(exc.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+	
+	private List<Estudiante> estudiantes ; 
+	
+	@PostConstruct
+	public void loadData() {
+		estudiantes = new ArrayList<>() ; 
+		estudiantes.add(new Estudiante("Fabian", "Garcia")) ;
+		estudiantes.add(new Estudiante("Ivan", "Forero")) ;
+		estudiantes.add(new Estudiante("Ivan2", "Forero2")) ;
+	}
+
+	@RequestMapping("/estudiantes")
+	public List<Estudiante> getEstudiantes() {
+		return estudiantes  ;
+	}
+		
+	
+	@GetMapping("/estudiantes/{estudianteId}")
+	public Estudiante getEstudiante(@PathVariable int estudianteId) throws StubNotFoundException {		
+		if ( estudianteId >= estudiantes.size() || estudianteId < 0 ) {		
+			throw new EstudianteNotFoundException("NO se encontro "+ estudianteId) ; 
+		}	
+		return estudiantes.get(estudianteId)  ;
+	} 
+}

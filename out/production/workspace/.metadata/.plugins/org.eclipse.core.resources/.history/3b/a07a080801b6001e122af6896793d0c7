@@ -1,0 +1,34 @@
+package com.ivan.crudemo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.ivan.crudemo.dao.StudentDAO;
+import com.ivan.crudemo.dao.StudentDAOImpl;
+import com.ivan.crudemo.entity.Student;
+
+@SpringBootApplication
+public class CrudemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CrudemoApplication.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+		return runner -> { // esto es una expresion lamda java
+			System.out.println("hola");
+			crearStudiante(studentDAO);
+		};
+	}
+
+	private void crearStudiante(StudentDAO studentDAO) {
+		// TODO Auto-generated method stub
+		
+		Student estudiante = new Student("IVAN", "FORERO", "IVMAFO@GMAIL.COM" ) ;
+		studentDAO.save( estudiante );
+	}
+	
+}

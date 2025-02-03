@@ -1,0 +1,5 @@
+package com.ivan.demo.rest;
+
+public class EstudianteRestExceptionHandler {
+
+}

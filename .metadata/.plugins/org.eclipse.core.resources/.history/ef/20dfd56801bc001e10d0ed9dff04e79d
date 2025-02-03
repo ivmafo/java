@@ -1,0 +1,84 @@
+package com.ivan.crudemo.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.ivan.crudemo.entity.Student;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
+
+@Repository
+public class StudentDAOImpl implements StudentDAO {
+
+	private EntityManager entityManager ; 
+	
+	
+	public StudentDAOImpl(EntityManager entityManager) {
+		super();
+		this.entityManager = entityManager;
+	}
+
+	@Override
+	@Transactional
+	public void save(Student student) {
+		// TODO Auto-generated method stub
+		entityManager.persist(student);
+	}
+
+	@Override
+	public Student findById(Integer id) {
+		// TODO Auto-generated method stub
+		return entityManager.find(Student.class, id);
+	}
+
+	@Override
+	public List<Student> findAll() {
+		// TODO Auto-generated method stub		
+		return entityManager.createQuery(" from Student" , Student.class).getResultList();
+	}
+
+	@Override
+	public List<Student> findByLastName(String apellido) {
+		// TODO Auto-generated method stub
+		TypedQuery<Student> qry = entityManager.createQuery(
+				 " from Student where apellido=:dta" , Student.class);
+		qry.setParameter("dta", apellido); 
+		return qry.getResultList() ;
+		
+	}
+
+	@Override
+	@Transactional
+	public void updateApellido(Student mistudent) {
+		// TODO Auto-generated method stub
+		entityManager.merge(mistudent);
+	}
+
+	@Override
+	public void delete() {
+		// TODO Auto-generated method stub
+		entityManager.createQuery("DELETE FROM Student").executeUpdate();
+	}
+
+	@Override
+	@Transactional
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		Student estudiante = entityManager.find(Student.class, id) ; 
+		entityManager.remove(estudiante);
+		//qry = entityManager.createQuery("DELETE FROM Student WHERE id = :id").executeUpdate();
+		//qry.setParameter("id", id);
+	}
+
+	@Override
+	public int deleteAll() {
+		// TODO Auto-generated method stub
+		int row = entityManager.createQuery("delete from student").executeUpdate();
+		return row ; 
+	}
+	
+	
+}

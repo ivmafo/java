@@ -1,0 +1,45 @@
+package basics;
+
+import basics.Account;
+import basics.Dog;
+public class Hola {
+
+	public static void main(String[] args) {
+		
+		Dog.bark();
+		
+		/*
+        Account myAccount = new Account();		 
+		Account myAccount2 = new Account();
+		myAccount.deposit(1000);
+		myAccount.withdraw(500);
+		myAccount.withdraw(400);
+		myAccount.deposit(1900);
+		myAccount.withdraw(2100);
+
+		myAccount2.deposit(1000);
+
+		System.out.println(myAccount.getBalance());
+		System.out.println(myAccount2.getBalance());
+
+
+		/*
+		Scanner sc = new Scanner(System.in) ; 
+		System.out.println("nombre : ");
+		String nombre = sc.nextLine(); 
+		System.out.println("edad : ");
+		int edad = sc.nextInt();
+		System.out.println("Sexo :");
+		char sexo = sc.next().charAt(0) ; 
+		System.out.println("su nombre es "+ nombre);
+		System.out.println("su edad es "+ edad);
+		System.out.println("su sexo es "+ sexo);*/
+		/*
+		Car car = new Car();
+		car.setMake("Porsche");
+		car.setModel("Carrera");
+		car.setColor("Red") ;
+		car.describeCar();*/
+	}
+
+}
